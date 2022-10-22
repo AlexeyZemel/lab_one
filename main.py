@@ -36,7 +36,7 @@ def get_images(count_imgs, path, name):
     for i in tqdm(range(3, 999), desc="Страница ", colour="green"):
 
         letters = string.ascii_lowercase
-        rand_string = "".join(random.sample(letters, 10)) 
+        rand_string = "".join(random.sample(letters, 10))
         _headers = {"User-Agent": rand_string}
 
         url = f"https://yandex.ru/images/search?p={i}&text={name}&"  # формируем ссылку запроса
@@ -76,11 +76,13 @@ def get_images(count_imgs, path, name):
                 except Exception:
                     print("Error in: ", count)
 
-def img_compare (img1, img2):
+
+def img_compare(img1, img2):
     image_1 = Image.open(img1)
     image_2 = Image.open(img2)
-    result=ImageChops.difference(image_1, image_2).getbbox()
+    result = ImageChops.difference(image_1, image_2).getbbox()
     return result
+
 
 def check_images(path, count):
     c = count
@@ -94,7 +96,7 @@ def check_images(path, count):
         for image2, fname2 in images:
             if fname1 == fname2:
                 continue
-            if img_compare(image1, image2)==None:
+            if img_compare(image1, image2) == None:
                 print(fname1, fname2)
                 os.remove(fname2)
                 c -= 1
@@ -112,3 +114,13 @@ for sec in range(1, 61):
 
 get_images(count_find, bbear_path, "brown bear")
 
+new_count = check_images(pbear_path, count_find)
+get_images(new_count, pbear_path, "polar bear")
+
+print("Пауза")
+for sec in range(1, 61):
+    print("Осталось ", 61 - sec)
+    time.sleep(1)
+
+new_count = check_images(bbear_path, count_find)
+get_images(new_count, bbear_path, "brown bear")
