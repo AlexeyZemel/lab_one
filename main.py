@@ -75,3 +75,14 @@ def get_images(count_imgs, path, name):
                 except Exception:
                     print("Error in: ", count)
 
+count_find = 1050
+
+get_images(count_find, pbear_path, "polar bear")
+
+print("Пауза")
+for sec in range(1, 61):
+    print("Осталось ", 61 - sec)
+    time.sleep(1)
+
+get_images(count_find, bbear_path, "brown bear")
+
