@@ -13,6 +13,7 @@ import cv2
 import urllib.request
 import random
 import numpy as np
+from PIL import ImageChops, Image
 from tqdm import tqdm
 
 if not os.path.isdir("E:\dataset"):
@@ -74,6 +75,12 @@ def get_images(count_imgs, path, name):
 
                 except Exception:
                     print("Error in: ", count)
+
+def img_compare (img1, img2):
+    image_1 = Image.open(img1)
+    image_2 = Image.open(img2)
+    result=ImageChops.difference(image_1, image_2).getbbox()
+    return result
 
 count_find = 1050
 
