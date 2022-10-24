@@ -7,7 +7,6 @@ import re
 from re import sub
 from decimal import Decimal
 import io
-from datetime import datetime
 import cv2
 import urllib.request
 import random
@@ -106,20 +105,14 @@ count_find = 1050
 
 get_images(count_find, pbear_path, "polar bear")
 
-print("Пауза")
-for sec in range(1, 61):
-    print("Осталось ", 61 - sec)
-    time.sleep(1)
+print("Следующий этап")
 
 get_images(count_find, bbear_path, "brown bear")
 
 new_count = check_images(pbear_path, count_find)
 get_images(new_count, pbear_path, "polar bear")
 
-print("Пауза")
-for sec in range(1, 61):
-    print("Осталось ", 61 - sec)
-    time.sleep(1)
+print("Следующий этап")
 
 new_count = check_images(bbear_path, count_find)
 get_images(new_count, bbear_path, "brown bear")
