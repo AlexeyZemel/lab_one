@@ -8,13 +8,12 @@ from re import sub
 from decimal import Decimal
 import io
 from datetime import datetime
-import pandas as pd
 import cv2
 import urllib.request
 import random
-import numpy as np
 from PIL import ImageChops, Image
 from tqdm import tqdm
+
 
 if not os.path.isdir("E:\dataset"):
     os.mkdir("E:\dataset")
@@ -53,7 +52,7 @@ def get_images(count_imgs, path, name):
         ):  # находим все элементы с нужным тегом и классом и добавляем его "соурс" в список
             src_list.append(link.get("src"))
 
-        for img_url in tqdm(src_list, desc="Скчивание картинок ", colour="green"):
+        for img_url in tqdm(src_list, desc="Скачивание картинок ", colour="green"):
             if img_url.find("n=13") != -1:
                 try:
                     source = "https:" + img_url
