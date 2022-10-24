@@ -88,14 +88,14 @@ def check_images(path, count):
     images = []
     for filename1 in os.listdir(path):
         images.append(
-            (cv2.imread(os.path.join(path, filename1)), os.path.join(path, filename1))
-        )  # добавляем в список прочитанную картинку и её путь
+            os.path.join(path, filename1)
+        )  # добавляем в список путь картинки
 
-    for image1, fname1 in tqdm(images, colour="green"):
-        for image2, fname2 in images:
+    for fname1 in tqdm(images, colour="green"):
+        for fname2 in images:
             if fname1 == fname2:
                 continue
-            if img_compare(image1, image2) == None:
+            if img_compare(fname1, fname2) == None:
                 print(fname1, fname2)
                 os.remove(fname2)
                 c -= 1
