@@ -3,6 +3,15 @@ import os
 from tqdm import tqdm
 
 def write_annotation (dataset_path: str, csv_path: str) -> None:
+    
+    '''
+        Записывает аннотации dataset в csv файл
+
+        Ключевые аргументы:
+            dataset_path(str): путь до данных, для которых пишутся аннотации
+            csv_path(str): путь до csv файла, куда записываются аннотации
+    '''
+    
     headings = ['Absolute way', 'Relative way', 'Class']
     with open(csv_path, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames = headings, delimiter=';', quoting=csv.QUOTE_ALL)
@@ -34,6 +43,7 @@ def write_annotation (dataset_path: str, csv_path: str) -> None:
                                         'Relative way': f'dataset/{class_name}/{str(i).zfill(4)}.jpg',
                                         'Class': class_name})
 
-path_to_dataset = 'E:\dataset'
-csv_path = 'dataset.csv'
-write_annotation(path_to_dataset, csv_path)
+if __name__ == "__main__":
+    path_to_dataset = 'E:\dataset'
+    csv_path = 'dataset.csv'
+    write_annotation(path_to_dataset, csv_path)

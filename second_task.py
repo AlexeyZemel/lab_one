@@ -4,6 +4,16 @@ from tqdm import tqdm
 import shutil
 
 def write_copy(number: int, class_name: str, another_path: str) -> None:
+    
+    '''
+        Записывает аннотации о копии в csv файл
+
+        Ключевые аргументы:
+            number (int): номер копии
+            class_name (str): имя класса
+            another_path (str): путь до другой директории
+    '''
+
     headings = ['Absolute way', 'Relative way', 'Class']
     with open('another_dataset.csv', 'a', newline='', encoding='utf-8') as f:
         write_in_file = csv.DictWriter(f, fieldnames = headings, delimiter=';', quoting=csv.QUOTE_ALL)
@@ -12,6 +22,15 @@ def write_copy(number: int, class_name: str, another_path: str) -> None:
                                         'Class': class_name})     
 
 def copy_to_another(path_to_another: str, path_to_dataset: str) -> None:
+    
+    '''
+        Копирует данные из dataset в другую директорию
+
+        Ключевые аргументы:
+            path_to_another(str): путь до другой директории
+            path_to_dataset(str): путь до dataset
+    '''
+    
     if not os.path.exists(path_to_another):
         os.mkdir(path_to_another)
 
@@ -42,6 +61,7 @@ def copy_to_another(path_to_another: str, path_to_dataset: str) -> None:
                 shutil.copyfile(path, new_path)
                 write_copy(i, class_name, new_path)
 
-path_to_dataset = 'E:/dataset'
-path_to_another_dataset = 'E:/dataset/another_dataset'
-copy_to_another(path_to_another_dataset, path_to_dataset)
+if __name__ == "__main__":
+    path_to_dataset = 'E:/dataset'
+    path_to_another_dataset = 'E:/dataset/another_dataset'
+    copy_to_another(path_to_another_dataset, path_to_dataset)
