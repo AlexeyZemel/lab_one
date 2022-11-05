@@ -44,4 +44,4 @@ def copy_to_another(path_to_another: str, path_to_dataset: str) -> None:
 
 path_to_dataset = 'E:/dataset'
 path_to_another_dataset = 'E:/dataset/another_dataset'
-copy_to_another(path_to_dataset, path_to_another_dataset)
+copy_to_another(path_to_another_dataset, path_to_dataset)
