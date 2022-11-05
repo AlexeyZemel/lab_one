@@ -8,7 +8,7 @@ def write_copy(number: int, class_name: str, another_path: str) -> None:
     with open('another_dataset.csv', 'a', newline='', encoding='utf-8') as f:
         write_in_file = csv.DictWriter(f, fieldnames = headings, delimiter=';', quoting=csv.QUOTE_ALL)
         write_in_file.writerow({'Absolute way': another_path,
-                                'Relative way': f'dataset/another_dataset/{class_name}_{str(i).zfill(4)}.jpg',
+                                'Relative way': f'dataset/another_dataset/{class_name}_{str(number).zfill(4)}.jpg',
                                         'Class': class_name})     
 
 def copy_to_another(path_to_another: str, path_to_dataset: str) -> None:
