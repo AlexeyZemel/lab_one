@@ -19,7 +19,7 @@ def write_annotation (dataset_path: str, csv_path: str) -> None:
             if os.path.isfile(path):
                 write_in_file.writerow({'Absolute way': dataset_path + f'/{class_name}/{str(i).zfill(4)}.jpg',
                                         'Relative way': f'dataset/{class_name}/{str(i).zfill(4)}.jpg',
-                                        'Class': class_name})
+                                        'Class': class_name})                                    
 
 
 path_to_dataset = 'E:\dataset'
