@@ -17,3 +17,13 @@ class Iterator:
                         self.list.append([row['Absolute way'], row['Relative way'], row['Class']])
         else: 
             raise FileNotFoundError
+        
+    def __iter__(self):
+        return self
+
+    def __next__(self) -> None:
+        if self.counter < len(self.list):
+            self.counter +=1
+            return self.list[self.counter][0]
+        elif self.counter == len(self.list):
+            raise StopIteration
