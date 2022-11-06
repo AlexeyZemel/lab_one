@@ -22,6 +22,17 @@ def write_copy(class_name: str, random_path: str) -> None:
                                 'Class': class_name})
 
 def copy_to_random(dataset_path: str, random_path: str, csv_path: str) -> None:
+
+    '''
+        Копирует файлы из dataset в новую директорию с именем файла из рандомных чисел
+        и записывает аннотации в csv файл
+
+        Ключевые аргументы:
+            dataset_path(str): путь до dataset
+            random_path(str): путь до директории, куда копируются файлы
+            csv_path(str): путь до csv файла 
+    '''
+    
     if not os.path.exists(random_path):
         os.mkdir(random_path)
     
