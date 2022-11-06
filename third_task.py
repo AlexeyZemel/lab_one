@@ -4,12 +4,29 @@ import random
 import shutil
 from tqdm import tqdm
 
+def write_copy(class_name: str, random_path: str) -> None:
+    
+    '''
+        Записывает аннотации о копии в csv файл
+
+        Ключевые аргументы:
+            class_name (str): имя класса
+            random_path (str): путь до другой директории
+    '''
+
+    headings = ['Absolute way', 'Relative way', 'Class']
+    with open(csv_path, 'a', newline='', encoding='utf-8') as f:
+        write_in_file = csv.DictWriter(f, fieldnames = headings, delimiter=';', quoting=csv.QUOTE_ALL)
+        write_in_file.writerow({'Absolute way': random_path,
+                                'Relative way': os.path.relpath(random_path),
+                                'Class': class_name})
+
 def copy_to_random(dataset_path: str, random_path: str, csv_path: str) -> None:
     if not os.path.exists(random_path):
         os.mkdir(random_path)
     
     headings = ['Absolute way', 'Relative way', 'Class']
-    with open('another_dataset.csv', 'w', newline='', encoding='utf-8') as f:
+    with open(csv_path, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames = headings, delimiter=';', quoting=csv.QUOTE_ALL)
         writer.writeheader() 
     
@@ -24,9 +41,10 @@ def copy_to_random(dataset_path: str, random_path: str, csv_path: str) -> None:
 
     for i in tqdm(range(0, sum_files), colour= 'green'):
             path = path_to_pbear + f'/{str(i).zfill(4)}.jpg'
-            new_path = random_path + f'{str(random_num1[i]).zfill(5)}.jpg'
+            new_path = random_path + f'/{str(random_num1[i]).zfill(5)}.jpg'
             if os.path.isfile(path):
                 shutil.copyfile(path, new_path)
+                write_copy(class_name, new_path)
 
 
 if __name__ == '__main__':
