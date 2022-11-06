@@ -55,3 +55,4 @@ if __name__ == "__main__":
     path_to_dataset = 'E:\dataset'
     csv_path = 'dataset.csv'
     write_annotation(path_to_dataset, csv_path)
+    
