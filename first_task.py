@@ -51,7 +51,7 @@ def write_annotation (dataset_path: str, csv_path: str) -> None:
     for i in tqdm(range(0, sum_files), colour='green'):
         write_i_annotation(i, class_name, dataset_path)
     
-if __name__ == "__main__":
+if __name__ == '__main__':
     path_to_dataset = 'E:\dataset'
     csv_path = 'dataset.csv'
     write_annotation(path_to_dataset, csv_path)
