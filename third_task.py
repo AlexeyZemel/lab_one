@@ -45,7 +45,17 @@ def copy_to_random(dataset_path: str, random_path: str, csv_path: str) -> None:
             if os.path.isfile(path):
                 shutil.copyfile(path, new_path)
                 write_copy(class_name, new_path)
+    
+    class_name = 'brownbears'
+    path_to_pbear = dataset_path + '/' + class_name
+    sum_files = len([fl for fl in os.listdir(path_to_pbear) if os.path.isfile(os.path.join(path_to_pbear, fl))])
 
+    for i in tqdm(range(0, sum_files), colour= 'green'):
+            path = path_to_pbear + f'/{str(i).zfill(4)}.jpg'
+            new_path = random_path + f'/{str(random_num2[i]).zfill(5)}.jpg'
+            if os.path.isfile(path):
+                shutil.copyfile(path, new_path)
+                write_copy(class_name, new_path)
 
 if __name__ == '__main__':
     path_to_dataset = 'E:/dataset'
