@@ -7,7 +7,6 @@ def write_i_annotation(i: int, class_name: str, dataset_path: str) -> None:
 
     """
     Записывает аннотацию i-ого файла в csv файл
-
     Ключевые аргументы:
         i(int): номер файла, для которого пишется аннотация
         class_name(str): имя класса
@@ -35,7 +34,6 @@ def write_annotation(dataset_path: str, csv_path: str) -> None:
 
     """
     Записывает аннотации dataset в csv файл
-
     Ключевые аргументы:
         dataset_path(str): путь до данных, для которых пишутся аннотации
         csv_path(str): путь до csv файла, куда записываются аннотации
@@ -79,3 +77,4 @@ if __name__ == "__main__":
     path_to_dataset = "E:\dataset"
     csv_path = "dataset.csv"
     write_annotation(path_to_dataset, csv_path)
+    
