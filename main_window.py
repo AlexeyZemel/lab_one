@@ -126,11 +126,10 @@ class MainWindow(QWidget):
                 self.dialog.setWindowTitle("Iteration")
                 self.dialog.exec()
 
-                if self.dialog.clickedButton().text() == "Next bear": 
+                if self.dialog.clickedButton().text() == "Next bear":
                     image = iter.__next__()
                     self.image_window = ShowImage(image, self)
                     self.image_window.show()
-
 
                 if self.dialog.clickedButton().text() == "Stop":
                     break
@@ -162,13 +161,20 @@ class MainWindow(QWidget):
                 if self.dialog.clickedButton().text() == "Stop":
                     break
 
+
 class ShowImage(QtWidgets.QWidget):
     def __init__(self, path, parent=None) -> None:
+        """
+        Конструктор класса
+        """
         super().__init__(parent, QtCore.Qt.Window)
         self.path_image = path
         self.build()
 
-    def build(self):
+    def build(self) -> None:
+        """
+        Создаёт окно с картинкой
+        """
         hbox = QHBoxLayout(self)
         pixmap = QPixmap(self.path_image)
 
@@ -177,9 +183,10 @@ class ShowImage(QtWidgets.QWidget):
 
         hbox.addWidget(lbl)
         self.setLayout(hbox)
-        
+
         self.move(800, 100)
         self.setWindowTitle("Bear")
+
 
 if __name__ == "__main__":
 
