@@ -29,7 +29,7 @@ class MainWindow(QWidget):
         self.setWindowIcon(QIcon("icon.png"))
 
         btn_first = QPushButton("Create annotation from dataset", self)
-        btn_first.setToolTip("<b>Create</b>")
+        btn_first.setToolTip("<i>Create</i>")
         btn_first.resize(btn_first.sizeHint())
         btn_first.move(50, 50)
         btn_first.clicked.connect(self.on_click_dataset)
@@ -37,10 +37,12 @@ class MainWindow(QWidget):
         btn_second = QPushButton(
             "Copying to another directory and create annotation", self
         )
-        btn_first.setToolTip("<b>Copy and Create</b>")
+        btn_second.setToolTip("<i>Copy and Create</i>")
         btn_second.resize(btn_second.sizeHint())
         btn_second.move(50, 100)
         btn_second.clicked.connect(self.on_click_another)
+
+        self.show()
 
     def on_click_dataset(self) -> None:
         """
