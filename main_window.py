@@ -9,3 +9,12 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 class MainWindow(QWidget):
+    def __init__(self) -> None:
+        """
+        Инициализирует объект класса
+        """
+        super().__init__()
+        self.initUI()
+        self.path_csv = ""
+
+    
