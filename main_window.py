@@ -43,7 +43,8 @@ class MainWindow(QWidget):
         btn_second.clicked.connect(self.on_click_another)
 
         btn_third = QPushButton(
-            "Copying to new directory with random number and create annotation", self)
+            "Copying to new directory with random number and create annotation", self
+        )
         btn_third.setToolTip("<i>Copy with random number</i>")
         btn_third.resize(btn_third.sizeHint())
         btn_third.move(50, 150)
@@ -59,7 +60,7 @@ class MainWindow(QWidget):
         btn_bbear.setToolTip("<i>Shows the brown bear</i>")
         btn_bbear.resize(btn_bbear.sizeHint())
         btn_bbear.move(50, 250)
-        btn_bbear.clicked.connect(self.on_click_next_pbear)
+        btn_bbear.clicked.connect(self.on_click_next_bbear)
 
         self.show()
 
@@ -71,13 +72,16 @@ class MainWindow(QWidget):
         if os.path.exists(dataset_path + "/brownbears") and os.path.exists(
             dataset_path + "/polarbears"
         ):
-            path_csvfile_dataset = QtWidgets.QFileDialog.getExistingDirectory(
+            path_csv = QtWidgets.QFileDialog.getExistingDirectory(
                 self, "Select folder to save csvfile"
             )
-            self.path_csv = write_annotation(dataset_path, path_csvfile_dataset)
+            self.path_csv = write_annotation(dataset_path, path_csv)
             print(self.path_csv)
 
-    def on_click_another(self):
+    def on_click_another(self) -> None:
+        """
+        Событие создания копирования
+        """
         dataset_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Folder")
         if os.path.exists(dataset_path + "/brownbears") and os.path.exists(
             dataset_path + "/polarbears"
@@ -85,9 +89,97 @@ class MainWindow(QWidget):
             path_another_dataset = QtWidgets.QFileDialog.getExistingDirectory(
                 self, "Select folder to save another directory"
             )
-            self.path_csv = copy_to_another(dataset_path, path_another_dataset)
+            self.path_csv = copy_to_another(path_another_dataset, dataset_path)
             print(self.path_csv)
 
+    def on_click_random(self) -> None:
+        """
+        Событие создания копирования с радномными номерами
+        """
+        dataset_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Folder")
+        if os.path.exists(dataset_path + "/cat") and os.path.exists(
+            dataset_path + "/dog"
+        ):
+            path_random_dataset = QtWidgets.QFileDialog.getExistingDirectory(
+                self, "Select folder to save random directory"
+            )
+            self.path_csv = copy_to_random(dataset_path, path_random_dataset)
+            print(self.path_csv)
+
+    def on_click_next_pbear(self) -> None:
+        """
+        Событие переключения между картинками класса polarbears
+        """
+        if self.path_csv == "":
+            _msg = QMessageBox()
+            _msg.setWindowTitle("Message")
+            _msg.setText("There is no created annotation file yet")
+            _msg.setIcon(QMessageBox.Information)
+            _msg.exec_()
+        else:
+            iter = Iterator("polarbears", self.path_csv)
+            while True:
+                self.dialog = QMessageBox()
+                self.dialog.addButton("Next bear", QMessageBox.AcceptRole)
+                self.dialog.addButton("Stop", QMessageBox.RejectRole)
+                self.dialog.setText("Choose what to do")
+                self.dialog.setWindowTitle("Iteration")
+                self.dialog.exec()
+
+                if self.dialog.clickedButton().text() == "Next bear": 
+                    image = iter.__next__()
+                    self.image_window = ShowImage(image, self)
+                    self.image_window.show()
+
+
+                if self.dialog.clickedButton().text() == "Stop":
+                    break
+
+    def on_click_next_bbear(self) -> None:
+        """
+        Событие переключения между картинками класса brownbears
+        """
+        if self.path_csv == "":
+            _msg = QMessageBox()
+            _msg.setWindowTitle("Message")
+            _msg.setText("There is no created annotation file yet")
+            _msg.setIcon(QMessageBox.Information)
+            _msg.exec_()
+        else:
+            iter = Iterator("brownbears", self.path_csv)
+            while True:
+                self.dialog = QMessageBox()
+                self.dialog.addButton("Next bear", QMessageBox.AcceptRole)
+                self.dialog.addButton("Stop", QMessageBox.RejectRole)
+                self.dialog.setText("Choose what to do")
+                self.dialog.exec()
+
+                if self.dialog.clickedButton().text() == "Next bear":
+                    image = iter.__next__()
+                    self.image_window = ShowImage(image, self)
+                    self.image_window.show()
+
+                if self.dialog.clickedButton().text() == "Stop":
+                    break
+
+class ShowImage(QtWidgets.QWidget):
+    def __init__(self, path, parent=None) -> None:
+        super().__init__(parent, QtCore.Qt.Window)
+        self.path_image = path
+        self.build()
+
+    def build(self):
+        hbox = QHBoxLayout(self)
+        pixmap = QPixmap(self.path_image)
+
+        lbl = QLabel(self)
+        lbl.setPixmap(pixmap)
+
+        hbox.addWidget(lbl)
+        self.setLayout(hbox)
+        
+        self.move(800, 100)
+        self.setWindowTitle("Bear")
 
 if __name__ == "__main__":
 
