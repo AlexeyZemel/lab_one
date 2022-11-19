@@ -22,11 +22,11 @@ class MainWindow(QWidget):
         """
         Создание GUI
         """
-        QToolTip.setFont(QFont("SansSerif", 10))
+        QToolTip.setFont(QFont("SansSerif", 7))
 
         self.setGeometry(500, 500, 500, 420)
         self.setWindowTitle("Bears")
-        self.setWindowIcon(QIcon("icon.png"))
+        self.setWindowIcon(QIcon("icon.jpg"))
 
         btn_first = QPushButton("Create annotation from dataset", self)
         btn_first.setToolTip("<i>Create</i>")
@@ -37,10 +37,29 @@ class MainWindow(QWidget):
         btn_second = QPushButton(
             "Copying to another directory and create annotation", self
         )
-        btn_second.setToolTip("<i>Copy and Create</i>")
+        btn_second.setToolTip("<i>Copy</i>")
         btn_second.resize(btn_second.sizeHint())
         btn_second.move(50, 100)
         btn_second.clicked.connect(self.on_click_another)
+
+        btn_third = QPushButton(
+            "Copying to new directory with random number and create annotation", self)
+        btn_third.setToolTip("<i>Copy with random number</i>")
+        btn_third.resize(btn_third.sizeHint())
+        btn_third.move(50, 150)
+        btn_third.clicked.connect(self.on_click_random)
+
+        btn_pbear = QPushButton("Polar bear", self)
+        btn_pbear.setToolTip("<i>Shows the polar bear</i>")
+        btn_pbear.resize(btn_pbear.sizeHint())
+        btn_pbear.move(50, 200)
+        btn_pbear.clicked.connect(self.on_click_next_pbear)
+
+        btn_bbear = QPushButton("Brown bear", self)
+        btn_bbear.setToolTip("<i>Shows the brown bear</i>")
+        btn_bbear.resize(btn_bbear.sizeHint())
+        btn_bbear.move(50, 250)
+        btn_bbear.clicked.connect(self.on_click_next_pbear)
 
         self.show()
 
