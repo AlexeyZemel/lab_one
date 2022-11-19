@@ -38,7 +38,7 @@ def write_annotation(dataset_path: str, csv_path: str) -> None:
         dataset_path(str): путь до данных, для которых пишутся аннотации
         csv_path(str): путь до csv файла, куда записываются аннотации
     """
-
+    
     headings = ["Absolute way", "Relative way", "Class"]
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
