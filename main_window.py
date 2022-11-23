@@ -35,27 +35,27 @@ class MainWindow(QMainWindow):
 
         menubar = self.menuBar()
         first = menubar.addMenu("Create annotation dataset")
-        action1 = QAction(self)
+        action1 = QAction("Create", self)
         action1.triggered.connect(self.on_click_dataset)
         first.addAction(action1)
 
         second = menubar.addMenu("Copying to another directory")
-        action2 = QAction(self)
+        action2 = QAction("Copying", self)
         action2.triggered.connect(self.on_click_another)
         second.addAction(action2)
 
         third = menubar.addMenu("Copying to new directory with random number")
-        action3 = QAction(self)
+        action3 = QAction("Copying with random number", self)
         action3.triggered.connect(self.on_click_random)
         third.addAction(action3)
 
         fourth = menubar.addMenu("Polar bear")
-        action4 = QAction(self)
+        action4 = QAction("Show Polar bear", self)
         action4.triggered.connect(self.on_click_next_pbear)
         fourth.addAction(action4)
 
         fifth = menubar.addMenu("Brown bear")
-        action5 = QAction(self)
+        action5 = QAction("Show Brown bear", self)
         action5.triggered.connect(self.on_click_next_bbear)
         fifth.addAction(action5)
 
