@@ -103,8 +103,8 @@ class MainWindow(QWidget):
         Событие создания копирования с радномными номерами
         """
         dataset_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Folder")
-        if os.path.exists(dataset_path + "/cat") and os.path.exists(
-            dataset_path + "/dog"
+        if os.path.exists(dataset_path + "/brownbears") and os.path.exists(
+            dataset_path + "/polarbears"
         ):
             path_random_dataset = QtWidgets.QFileDialog.getExistingDirectory(
                 self, "Select folder to save random directory"
