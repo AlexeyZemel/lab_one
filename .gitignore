@@ -3,5 +3,5 @@ lab2-3/dataset.csv
 lab2-3/icon.jpg
 lab2-3/random_dataset.csv
 lab5/ConvNetModel.pth
-__pycache__/*.pyc
-.vscode/*.json
+__pycache__/
+.vscode/
